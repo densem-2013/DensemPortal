@@ -3,7 +3,7 @@
 
     //#main-slider
         $(function () {
-            $('#main-slider.carousel').carousel({
+            $('#myCarusel1 .carousel').carousel({
                 interval: 8000
             });
         });

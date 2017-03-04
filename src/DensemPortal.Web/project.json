@@ -2,10 +2,6 @@
   "userSecretsId": "aspnet-DensemPortal.Web-37eb3f25-690e-413d-b3d1-191aaf475eff",
 
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.1",
-      "type": "platform"
-    },
     "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -41,9 +37,13 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
+    },
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
     }
   },
 
@@ -84,6 +84,7 @@
   "publishOptions": {
     "include": [
       "wwwroot",
+      "Areas/**/*.cshtml",
       "**/*.cshtml",
       "appsettings.json",
       "web.config"

@@ -65,6 +65,15 @@
             <div class="navbar-collapse collapse navbar-right ">
                 <ul id="mainMenu" class="nav navbar-nav">
                     <li  id="home"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li id="portfolio" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="Portfolio" asp-controller="Portfolio" asp-action="Index">All Projects</a></li>
+                            <li><a asp-area="Portfolio" asp-controller="Portfolio" asp-action="Puzzle">Puzzle</a></li>
+                            <li><a href="#">404</a></li>
+                            <li><a href="#">Shortcodes</a></li>
+                        </ul>
+                    </li>
                     <li  id="about"><a asp-area="" asp-controller="Home" asp-action="About" >About</a></li>
                     <li id="contact"><a asp-area="" asp-controller="Home" asp-action="Contact" >Contact</a></li>
                 </ul>
@@ -72,13 +81,93 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+@*<div class="container body-content">*@
+    @*<div>*@
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - DensemPortal</p>
-        </footer>
+    @*</div>*@
+
+<section id="bottom">
+    <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <h3>How to</h3>
+                    <ul>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=699562">Add an appsetting in config and access it in app.</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
+                    </ul>
+                </div>
+            </div><!--/.col-md-3-->
+
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <h3>Overview</h3>
+                    <ul>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
+                    </ul>
+                </div>
+            </div><!--/.col-md-3-->
+
+
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <h3>Run & Deploy</h3>
+                    <ul>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
+                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
+                    </ul>
+                </div>
+            </div><!--/.col-md-3-->
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <h3>Developers</h3>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">SEO Marketing</a></li>
+                        <li><a href="#">Theme</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Email Marketing</a></li>
+                        <li><a href="#">Plugin Development</a></li>
+                        <li><a href="#">Article Writing</a></li>
+                    </ul>
+                </div>
+            </div><!--/.col-md-3-->
+        </div>
     </div>
+</section>
+    <!--/#bottom-->
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>&copy; 2017 - DensemPortal . All Rights Reserved.</p>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="Portfolio" asp-controller="Portfolio" asp-action="Index">Portfolio</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a href="#">Faq</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="back-to-top"><i class="fa fa-2x fa-angle-up"></i></a>
+    </footer>
+    <!--/#footer-->
 
     <environment names="Development">
         @*<script src="~/lib/jquery/dist/jquery.js"></script>
@@ -88,8 +177,8 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="~/lib/isotope/jquery.isotope.min.js"></script>
         <script src="~/lib/jquery-prettyPhoto/js/jquery.prettyPhoto.min.js"></script>
-        <script src="~/lib/wow.js/dist/wow.min.js"></script>
         <script src="~/js/site.min.js"></script>
+        <script src="~/lib/wow.js/dist/wow.min.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -122,11 +211,10 @@
                 jQuery('html, body').animate({ scrollTop: 0 }, duration);
                 return false;
             });
+            
+            $("#mainMenu,#loginMenu,#manageMenu>li").find('a[href="' + location.pathname + '"]')
+                .closest('li').addClass('active');
 
-            $(document).ready(function () {
-                $("#mainMenu,#loginMenu,#manageMenu>li").find('a[href="' + location.pathname + '"]')
-                    .closest('li').addClass('active');
-            });
         });
     </script>
     <!-- /top-link-block -->
