@@ -2,7 +2,7 @@
 
 namespace DensemPortal.Core.Domain.Main
 {
-    public sealed class ApplicationRole : IdentityRole<string>
+    public sealed class ApplicationRole : IdentityRole
     {
         public ApplicationRole() : base() { }
 

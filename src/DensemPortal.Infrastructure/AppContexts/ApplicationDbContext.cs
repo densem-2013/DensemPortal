@@ -1,10 +1,13 @@
 ﻿using DensemPortal.Core.Domain.Main;
+using DensemPortal.Core.Domain.Portfolio.Puzzle;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace DensemPortal.Web.Models
-{
+namespace DensemPortal.Infrastructure.AppContexts
+    {/// <summary>
+     /// dotnet ef migrations add InitialCreate -c ApplicationDbContext
+     /// </summary>
     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -26,5 +29,6 @@ namespace DensemPortal.Web.Models
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<ApplicationRole> ApplicationRole { get; set; }
+        public DbSet<PuzzleViewSettings> PuzzleViewSettings { get; set; }
     }
 }

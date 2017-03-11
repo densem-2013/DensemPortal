@@ -1,5 +1,5 @@
 ﻿using DensemPortal.Core.Domain.Main;
-using DensemPortal.Web.Models;
+using DensemPortal.Infrastructure.AppContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DensemPortal.Web.Services;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
 
 namespace DensemPortal.Web
 {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using DensemPortal.Core.Domain.Main;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using DensemPortal.Web.Models;
 using DensemPortal.Web.Models.ManageViewModels;
 using DensemPortal.Web.Services;
 
