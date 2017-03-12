@@ -8,7 +8,7 @@ using DensemPortal.Infrastructure.AppContexts;
 namespace DensemPortal.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170311171140_InitialCreate")]
+    [Migration("20170312204218_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
