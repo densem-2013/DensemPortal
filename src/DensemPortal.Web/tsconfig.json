@@ -1,5 +1,5 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -8,7 +8,15 @@
     "noImplicitAny": false,
     "noEmitOnError": false,
     "removeComments": false,
-    "target": "es5"
+    "target": "es6",
+    "rootDir": "App",
+    "outDir": "wwwroot/app",
+    "typeRoots": [ "./typings" ],
+    "types": []
+  },
+  "angularCompilerOptions": {
+    "genDir": ".",
+    "debug": true
   },
   "exclude": [
     "node_modules",

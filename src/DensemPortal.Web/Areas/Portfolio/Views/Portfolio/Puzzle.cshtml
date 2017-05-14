@@ -1,10 +1,29 @@
-@using DensemPortal.Web.Models
-@model DensemPortal.Web.Models.ApplicationUser
+@using DensemPortal.Core.Domain.Main
+@model ApplicationUser
 
 @{
     ViewData["Title"] = "Puzzle";
     Layout = "_Layout";
 }
 
-<h2>Puzzle</h2>
+<script>
+            document.getElementsByTagName("base")[0].setAttribute("href", "/portfolio/puzzle");
+</script>
+
+<script src="~/lib/html5-history-api/history.min.js"></script>
+<script src="~/lib/classlist.js/classList.min.js"></script>
+<script src="~/lib/core-js/client/shim.min.js"></script>
+<script src="~/lib/intl/dist/Intl.complete.js"></script>
+<script src="~/lib/zone.js/dist/zone.min.js"></script>
+<script src="~/lib/reflect-metadata/Reflect.js"></script>
+<script src="~/lib/systemjs/dist/system.js"></script>
+<script src="~/js/rxjs.module.min.js"></script>
+<script src="~/js/systemjs.config.js"></script>
+<script>
+            System.import("/app/main.js").catch(function (err) { console.error(err); });
+</script>
+<div id="puzzleContent" class="container">
+    <h2>Puzzle</h2>
+    <no404-bo-app>Loading...</no404-bo-app>
+</div>
 

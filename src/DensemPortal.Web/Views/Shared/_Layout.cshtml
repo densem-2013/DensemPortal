@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="/">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DensemPortal</title>
@@ -14,8 +15,8 @@
         <link rel="stylesheet" href="~/lib/jquery-prettyPhoto/css/prettyPhoto.min.css" />
         <link rel="stylesheet" href="~/css/responsive.min.css" />
         <link rel="stylesheet" href="~/css/main.min.css" />
-        @*<link rel="stylesheet" href="~/css/site.min.css" />
-            *@
+        <link rel="stylesheet" href="~/css/puzzle.min.css" />
+            
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
@@ -170,15 +171,17 @@
     <!--/#footer-->
 
     <environment names="Development">
-        @*<script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>*@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="~/lib/isotope/jquery.isotope.min.js"></script>
         <script src="~/lib/jquery-prettyPhoto/js/jquery.prettyPhoto.min.js"></script>
-        <script src="~/js/site.min.js"></script>
         <script src="~/lib/wow.js/dist/wow.min.js"></script>
+        @*<script>
+            System.import("app/main.js").catch(function (err) { console.error(err); });
+        </script>*@
+        <link href="~/lib/Font-Awesome/css/font-awesome.min.css"
+              rel="stylesheet" />
+        <script src="~/js/site.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -189,7 +192,10 @@
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.js"></script>
+        <script>
+            document.getElementsByTagName("base")[0].setAttribute("href", "/portfolio/puzzle");
+        </script>
     </environment>
     <!-- Back To Top -->
     <script type="text/javascript">

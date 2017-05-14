@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>DensemPortal.Web</AssemblyName>
     <OutputType>Exe</OutputType>
@@ -10,6 +10,22 @@
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot/css\animate.min.css" />
+    <Content Remove="wwwroot/css\bundleBootstrap.min.css" />
+    <Content Remove="wwwroot/css\main.min.css" />
+    <Content Remove="wwwroot/css\main.min.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App\app.component.ts" />
+    <Content Include="App\app.module.ts" />
+    <Content Include="App\main.ts" />
+    <Content Include="wwwroot\css\animate.css" />
+    <Content Include="wwwroot\css\animate.min.css" />
+    <Content Include="wwwroot\css\bundleBootstrap..css" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="wwwroot\**\*;Areas\**\*.cshtml">
@@ -64,6 +80,14 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\app\home\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\systemjs.config.js" />
   </ItemGroup>
 
 </Project>

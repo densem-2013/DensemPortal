@@ -1,40 +1,66 @@
 {
-  "version": "1.0.0",
-  "name": "DensemPortal",
   "author": "Densem",
   "description": "Densem Portal",
-  "dependencies": {
-    "@angular/common": "2.0.0-rc.6",
-    "@angular/compiler": "2.0.0-rc.6",
-    "@angular/core": "2.0.0-rc.6",
-    "@angular/http": "2.0.0-rc.6",
-    "@angular/platform-browser": "2.0.0-rc.6",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.6",
-    "@angular/upgrade": "2.0.0-rc.6",
-    "@angular/forms": "2.0.0-rc.6",
-    "@angular/router": "3.0.0-rc.2",
-
-    "core-js": "^2.4.1",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "5.0.0-beta.6",
-    "systemjs": "^0.19.37",
-    "typings": "^1.3.2",
-    "zone.js": "^0.6.12",
-    "moment": "^2.14.1"
+  "license": "MIT",
+  "name": "DensemPortal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/densem-2013/DensemPortal.git"
   },
-
+  "dependencies": {
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/forms": "~2.2.0",
+    "@angular/http": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "@angular/router": "~3.2.0",
+    "@angular/upgrade": "~2.2.0",
+    "classlist.js": "1.1.20150312",
+    "angular-in-memory-web-api": "~0.1.15",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.39",
+    "zone.js": "^0.6.25",
+    "intl": "1.2.5",
+    "bower": "1.7.9",
+    "jquery": "^3.1.0",
+    "font-awesome": "4.7.0",
+    "html5-history-api": "4.2.7"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.45",
+    "concurrently": "^2.2.0",
+    "gulp": ">=3.9.1",
+    "gulp-concat": ">=2.5.2",
+    "gulp-copy": ">=0.0.2",
+    "gulp-cssmin": ">=0.1.7",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-rename": ">=1.2.2",
+    "gulp-rimraf": ">=0.2.0",
+    "gulp-tsc": ">=1.2.0",
+    "gulp-uglify": ">=1.2.0",
+    "gulp-watch": ">=4.3.9",
+    "gulp-clean-css": "^3.0.4",
     "gulp-clean": "^0.3.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-less": "^3.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.13.6",
-    "gulp-uglify": "^2.0.0",
-    "typescript": "^1.8.10",
-    "jasmine-core": "~2.4.1"
+    "jasmine-core": "2.4.1",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.0",
+    "typings": "^1.3.2",
+    "systemjs-builder": "0.15.32"
   },
   "scripts": {
-    "postinstall": "typings install dt~core-js --global"
-  }
+    "start": "concurrently \"npm run gulp\" \"npm run watch\" \"npm run tsc:w\"",
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings",
+    "gulp": "gulp",
+    "watch": "gulp watch",
+    "ngc": "ngc"
+  },
+  "version": "1.0.0"
 }

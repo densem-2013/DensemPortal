@@ -1,80 +1,139 @@
-﻿var gulp = require('gulp'),
-    gp_clean = require('gulp-clean'),
-    gp_concat = require('gulp-concat'),
-    gp_less = require('gulp-less'),
-    gp_sourcemaps = require('gulp-sourcemaps'),
-    gp_typescript = require('gulp-typescript'),
-    gp_uglify = require('gulp-uglify');
+﻿
+/// 
+"use strict";
 
-/// Define paths
-var srcPaths = {
-    app: ['Scripts/app/main.ts', 'Scripts/app/**/*.ts'],
-    js: [
-        'Scripts/js/**/*.js',
-        'node_modules/core-js/client/shim.min.js',
-        'node_modules/zone.js/dist/zone.js',
-        'node_modules/reflect-metadata/Reflect.js',
-        'node_modules/systemjs/dist/system.src.js',
-        'node_modules/typescript/lib/typescript.js',
-        'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js',
-        'node_modules/moment/moment.js'
-    ],
-    js_angular: [
-        'node_modules/@angular/**'
-    ],
-    js_rxjs: [
-        'node_modules/rxjs/**'
-    ]
-};
+var gulp = require('gulp');
+var config = require('./gulp.config')();
+var cleanCSS = require('gulp-clean-css');
+var clean = require('gulp-clean');
+var rename = require('gulp-rename');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify'); 
+var $ = require('gulp-load-plugins')({ lazy: true });
 
-var destPaths = {
-    app: 'wwwroot/app/',
-    css: 'wwwroot/css/',
-    js: 'wwwroot/js/',
-    js_angular: 'wwwroot/js/@angular/',
-    js_rxjs: 'wwwroot/js/rxjs/'
-};
-
-// Compile, minify and create sourcemaps all TypeScript files 
-// and place them to wwwroot/app, together with their js.map files.
-gulp.task('app', ['app_clean'], function () {
-    return gulp.src(srcPaths.app)
-        .pipe(gp_sourcemaps.init())
-        .pipe(gp_typescript(require('./tsconfig.json').compilerOptions))
-        .pipe(gp_uglify({ mangle: false }))
-		.pipe(gp_sourcemaps.write('/'))
-        .pipe(gulp.dest(destPaths.app));
+gulp.task("clean:js", function (cb) {
+    //return $.rimraf('wwwroot/js/*.min.js', cb);
+    return gulp.src('wwwroot/js/*.min.js', { read: false }).pipe(clean());
 });
 
-// Delete wwwroot/app contents
-gulp.task('app_clean', function () {
-    return gulp.src(destPaths.app + "*", { read: false })
-    .pipe(gp_clean({ force: true }));
+gulp.task("clean:css", function (cb) {
+    //return $.rimraf('wwwroot/css/*.min.css', cb);
+    return gulp.src('wwwroot/css/*.min.css', { read: false }).pipe(clean());
 });
 
-//// Delete wwwroot/js contents
-gulp.task('js_clean', function () {
-    return gulp.src(destPaths.js + "*", { read: false })
-    .pipe(gp_clean({ force: true }));
+gulp.task('minify:css', function () {
+    return gulp.src(config.css)
+        .pipe(cleanCSS())
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest(config.cssDest));
 });
 
-// Copy all JS files from external libraries to wwwroot/js
-gulp.task('js', function () {
-    gulp.src(srcPaths.js_angular)
-        .pipe(gulp.dest(destPaths.js_angular));
-    gulp.src(srcPaths.js_rxjs)
-        .pipe(gulp.dest(destPaths.js_rxjs));
-    return gulp.src(srcPaths.js)
-        .pipe(gulp.dest(destPaths.js));
+gulp.task("clean", ["clean:js", "clean:css"]);
+gulp.task('minify', ['minify:css']);
+
+gulp.task("copy:angular", function () {
+
+    return gulp.src(config.angular,
+        { base: config.node_modules + "@angular/" })
+        .pipe(gulp.dest(config.lib + "@angular/"));
 });
 
-//// Global cleanup task
-//gulp.task('cleanup', ['app_clean', 'js_clean']);
-
-// Watch specified files and define what to do upon file changes
-gulp.task('watch', function () {
-    gulp.watch([srcPaths.app, srcPaths.js], ['app', 'js']);
+gulp.task("copy:angularWebApi", function () {
+    return gulp.src(config.angularWebApi,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
 });
 
-// Define the default task so it will launch all other tasks
-gulp.task('default', ['app', 'js', 'watch']);
+gulp.task("copy:corejs", function () {
+    return gulp.src(config.corejs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:zonejs", function () {
+    return gulp.src(config.zonejs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:reflectjs", function () {
+    return gulp.src(config.reflectjs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:systemjs", function () {
+    return gulp.src(config.systemjs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:rxjs", function () {
+    return gulp.src(config.rxjs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:app", function () {
+    return gulp.src(config.app)
+        .pipe(gulp.dest(config.appDest));
+});
+
+gulp.task("copy:jasmine", function () {
+    return gulp.src(config.jasminejs,
+        { base: config.node_modules + "jasmine-core/lib" })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:intl", function () {
+    return gulp.src(config.intljs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:classlist", function () {
+    return gulp.src(config.classlistjs,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("copy:html5history", function () {
+    return gulp.src(config.html5history,
+        { base: config.node_modules })
+        .pipe(gulp.dest(config.lib));
+});
+
+gulp.task("compile:rxjs",
+    function() {
+        return gulp.src(config.rxjsCompl)
+            .pipe(concat('rxjs.module.js'))
+            .pipe(gulp.dest(config.jsDest))
+            .pipe(rename('rxjs.module.min.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest(config.jsDest))
+    });
+
+gulp.task("dependencies",
+[
+    "copy:angular",
+    "copy:angularWebApi",
+    "copy:corejs",
+    "copy:zonejs",
+    "copy:reflectjs",
+    "copy:systemjs",
+    "copy:rxjs",
+    "copy:jasmine",
+    "copy:app",
+    "copy:intl",
+    "copy:classlist",
+    "copy:html5history"
+]);
+
+gulp.task("watch", function () {
+    return $.watch(config.app)
+        .pipe(gulp.dest(config.appDest));
+});
+
+gulp.task("default", ["clean", 'minify', "dependencies"]);

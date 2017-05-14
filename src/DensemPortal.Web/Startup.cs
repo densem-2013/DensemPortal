@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DensemPortal.Web.Services;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
+using Newtonsoft.Json.Serialization;
 
 namespace DensemPortal.Web
 {
@@ -47,9 +48,11 @@ namespace DensemPortal.Web
             services.AddIdentity<ApplicationUser, ApplicationRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-
-            services.AddMvc();
-
+            
+            services
+               .AddMvc()
+               .AddJsonOptions(options => options.SerializerSettings.ContractResolver =
+                   new DefaultContractResolver());
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -76,7 +79,12 @@ namespace DensemPortal.Web
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseStaticFiles();
+            app.UseCors(
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials())
+                .UseStaticFiles();
 
             app.UseIdentity();
 
