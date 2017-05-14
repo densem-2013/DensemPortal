@@ -25,6 +25,7 @@
     <Content Include="wwwroot\css\animate.css" />
     <Content Include="wwwroot\css\animate.min.css" />
     <Content Include="wwwroot\css\bundleBootstrap..css" />
+    <Content Include="wwwroot\css\puzzle.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +88,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\app\.gitignore" />
     <None Include="wwwroot\js\systemjs.config.js" />
   </ItemGroup>
 
